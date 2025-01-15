@@ -6,6 +6,7 @@ SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 # 切换到脚本所在的目录
 cd "$SCRIPT_DIR" || exit
 
+npm i
 npm run build
 
 export version=$(node -pe "const p=require('./package.json'); p.version;")
@@ -15,7 +16,5 @@ echo $version
 cd dist
 
 zip -r v$version.zip *
-
-scp v$version.zip root@keeyuu.com:/data/website/app/version/
 
 echo "build Success"

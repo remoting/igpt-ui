@@ -15,7 +15,6 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: "dist",
-    //outDir: "/Users/lanren/Documents/igpt/v1.0.0",
     target: "chrome58",
     //minify: "terser",
     //minify: false,
@@ -24,38 +23,26 @@ export default defineConfig({
     rollupOptions: {
       input: "index.html",
       external: [
-        //   "vue",
-        //   "element-plus",
-        //   "vue-router",
-        //   "moment",
-        //   "LYSDK"
       ],
       plugins: [
-        //   externalGlobals({
-        //     vue: "Vue",
-        //     "vue-router": "VueRouter",
-        //     "element-plus": "ElementPlus",
-        //     moment: "moment"
-        //   }),
       ],
       output: {
         manualChunks(id) {
-          if (id.includes("/front/node_modules/")) {
+          if (id.includes("/igpt-ui/node_modules/")) {
             var vvv = id
               .toString()
               .split("node_modules/")[1]
               .split("/")[0]
               .toString();
-            if (
-              vvv.startsWith("element-plus") ||
-              vvv.startsWith("@element-plus")
-            ) {
+            if (vvv.startsWith("element-plus") || vvv.startsWith("@element-plus")) {
               return "element";
+            } else if (vvv.startsWith("vant") || vvv.startsWith("@vant")) {
+              return "vant";
             } else {
               return "vendor";
             }
           }
-          if (id.includes("/front/src/")) {
+          if (id.includes("/igpt-ui/src/")) {
             return "app";
           }
         },
