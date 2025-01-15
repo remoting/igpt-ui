@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar",
+    "editor.formatOnSave": true
+  },
+  "prettier.requireConfig": false,
+  "prettier.tabWidth": 2
+}
